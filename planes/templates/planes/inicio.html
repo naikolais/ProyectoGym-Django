@@ -1,0 +1,14 @@
+{% extends 'planes/base.html' %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-dark text-white rounded-3 shadow">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold text-warning">Gestión de Planes de Entrenamiento</h1>
+        <p class="col-md-8 fs-4">Sistema de administración de programas deportivos conectado a MySQL.</p>
+        <hr class="my-4">
+        <p>Actualmente hay <strong>{{ total_planes }}</strong> plan(es) registrado(s).</p>
+        <a class="btn btn-warning btn-lg" href="{% url 'listar_planes' %}">Gestionar Planes</a>
+        <a class="btn btn-outline-light btn-lg ms-2" href="{% url 'crear_plan' %}">+ Crear Plan</a>
+    </div>
+</div>
+{% endblock %}
