@@ -14,10 +14,26 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'listar_planes' %}">Ver Planes</a></li>
-                    <li class="nav-item"><a class="btn btn-warning ms-2" href="{% url 'crear_plan' %}">+ Nuevo Plan</a></li>
+                    
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="btn btn-warning ms-2 btn-sm" href="{% url 'crear_plan' %}">+ Nuevo Plan</a></li>
+                        <li class="nav-item ms-3">
+                            <span class="text-light small">👤 {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post" class="d-inline ms-2">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Cerrar Sesión</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-outline-warning btn-sm" href="{% url 'login' %}">Iniciar Sesión</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
